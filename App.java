@@ -8,8 +8,6 @@ import java.util.logging.*;
 public class App {
     public static void main(String[] args) {
         Monitoring monitoring = new Monitoring();
-//        monitoring.getNews("팔란티어", 10, 1, "date");
-//        monitoring.getNews("팔란티어", 10, 1, SortType.date);
         monitoring.getNews(System.getenv("KEYWORD"), 10, 1, SortType.date);
     }
 }
@@ -28,7 +26,6 @@ class Monitoring {
     private final Logger logger;
 
     public Monitoring() {
-//        logger = Logger.getLogger("Monitoring");
         logger = Logger.getLogger(Monitoring.class.getName());
         logger.setLevel(Level.SEVERE);
         logger.info("Monitoring 객체 생성");
@@ -36,24 +33,8 @@ class Monitoring {
 
     // 1. 검색어를 통해서 최근 10개의 뉴스를 받아올게요
     public void getNews(String keyword, int display, int start, SortType sort) {
-//    public void getNews(String keyword, int display, int start, String sort) {
-        // https://developers.naver.com/docs/serviceapi/search/news/news.md#%EB%89%B4%EC%8A%A4
-//        String url = "https://openapi.naver.com/v1/search/news.json";
-//        String params = "query=%s&display=%d&start=%d&sort=%s".formatted(
-//                keyword, display, start, sort.value
-//        );
-//        HttpClient client = HttpClient.newHttpClient(); // 클라이언트
-//        HttpRequest request = HttpRequest.newBuilder()
-//                .uri(URI.create(url + "?" + params))
-//                .GET()
-//                .header("X-Naver-Client-Id", "*****")
-//                .header("X-Naver-Client-Secret", "*****")
-//                .build();
         String imageLink = "";
         try {
-//            HttpResponse<String> response = client.send(request,
-//                    HttpResponse.BodyHandlers.ofString());
-//            String response = getDataFromAPI(keyword, display, start, sort);
             String response = getDataFromAPI("news.json", keyword, display, start, sort);
             String[] tmp = response.split("title\":\"");
             // 0번째를 제외하곤 데이터
@@ -74,7 +55,7 @@ class Monitoring {
             } // flush 및 close.
             logger.info("제목 목록 생성 완료");
             String imageResponse = getDataFromAPI("image", keyword, display, start, SortType.sim);
-//            logger.info(imageResponse);
+
             // 2. 이미지
             imageLink = imageResponse
                     .split("link\":\"")[1].split("\",")[0]
@@ -95,7 +76,6 @@ class Monitoring {
     }
 
     private String getDataFromAPI(String path, String keyword, int display, int start, SortType sort) throws Exception {
-//        String url = "https://openapi.naver.com/v1/search/news.json";
         String url = "https://openapi.naver.com/v1/search/%s".formatted(path);
         String params = "query=%s&display=%d&start=%d&sort=%s".formatted(
                 keyword, display, start, sort.value
