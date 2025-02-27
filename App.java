@@ -9,10 +9,9 @@ import java.net.http.HttpResponse;
 import java.nio.file.Path;
 import java.util.Arrays;
 import java.util.Date;
-import java.util.logging.Level;
-import java.util.logging.Logger;
+import java.util.logging.*;
 
-public class NavarAPI {
+public class App {
     public static void main(String[] args) {
         Monitoring monitoring = new Monitoring();
         //monitoring.getNews("윈터", 10, 1, SortType.sim);
