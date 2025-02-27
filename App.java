@@ -1,21 +1,18 @@
 package dev_250227;
 
-import java.io.File;
-import java.io.FileWriter;
-import java.net.URI;
-import java.net.http.HttpClient;
-import java.net.http.HttpRequest;
-import java.net.http.HttpResponse;
-import java.nio.file.Path;
-import java.util.Arrays;
-import java.util.Date;
+import java.io.*;
+import java.net.*;
+import java.net.http.*;
+import java.nio.file.*;
+import java.util.*;
 import java.util.logging.*;
 
 public class App {
     public static void main(String[] args) {
         Monitoring monitoring = new Monitoring();
-        //monitoring.getNews("윈터", 10, 1, SortType.sim);
-        monitoring.getNews(System.getenv("KEYWORD"), 10, 1, SortType.sim);
+//        monitoring.getNews("팔란티어", 10, 1, "date");
+//        monitoring.getNews("팔란티어", 10, 1, SortType.date);
+        monitoring.getNews(System.getenv("KEYWORD"), 10, 1, SortType.date);
     }
 }
 
@@ -41,7 +38,19 @@ class Monitoring {
 
     // 1. 검색어를 통해서 최근 10개의 뉴스를 받아올게요
     public void getNews(String keyword, int display, int start, SortType sort) {
-
+//    public void getNews(String keyword, int display, int start, String sort) {
+        // https://developers.naver.com/docs/serviceapi/search/news/news.md#%EB%89%B4%EC%8A%A4
+//        String url = "https://openapi.naver.com/v1/search/news.json";
+//        String params = "query=%s&display=%d&start=%d&sort=%s".formatted(
+//                keyword, display, start, sort.value
+//        );
+//        HttpClient client = HttpClient.newHttpClient(); // 클라이언트
+//        HttpRequest request = HttpRequest.newBuilder()
+//                .uri(URI.create(url + "?" + params))
+//                .GET()
+//                .header("X-Naver-Client-Id", "*****")
+//                .header("X-Naver-Client-Secret", "*****")
+//                .build();
         String imageLink = "";
         try {
 //            HttpResponse<String> response = client.send(request,
