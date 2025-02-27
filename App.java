@@ -1,5 +1,3 @@
-package dev_250227;
-
 import java.io.*;
 import java.net.*;
 import java.net.http.*;
